@@ -2,6 +2,7 @@
   "name": "devops-lab-team-03",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +17,11 @@
     "url": "https://github.com/zoya-234/devops-lab-team-03/issues"
   },
   "homepage": "https://github.com/zoya-234/devops-lab-team-03#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.19.1"
+  }
 }
