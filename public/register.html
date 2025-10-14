@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h2>Register for the Event</h2>
-  <form action="/register" method="POST">
-    <input type="text" name="name" placeholder="Full Name" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="text" name="phone" placeholder="Phone" required><br>
+  <!-- Navigation -->
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/register.html">Register</a>
+    <a href="/past-events.html">Past Events</a>
+    <a href="/schedule.html">Schedule</a>
+  </nav>
+
+  <h1>Register for the Event</h1>
+  <form action="#" method="post">
+    <label>Name:</label>
+    <input type="text" name="name" required><br>
+    <label>Email:</label>
+    <input type="email" name="email" required><br>
     <button type="submit">Submit</button>
   </form>
 </body>
