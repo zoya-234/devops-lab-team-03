@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* 1. Global Reset & Typography */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -6,54 +5,24 @@ body {
   padding: 0;
   background-color: #f7f7f7;
   color: #333;
-=======
-/* Reset and Base */
-body {
-  font-family: "Poppins", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #e6dfd6, #d9cfc2);
-  color: #2f2f2f;
->>>>>>> 02b3a8d (Add login functionality)
 }
 
 /* 2. Navigation Styling */
 nav {
-<<<<<<< HEAD
   background-color: #ffffff;
   padding: 15px 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   display: flex;
   gap: 20px;
-=======
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  padding: 12px 25px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
->>>>>>> 02b3a8d (Add login functionality)
 }
 nav a {
-<<<<<<< HEAD
   text-decoration: none;
   color: #007bff; /* Primary link color */
   font-weight: 600;
   padding: 5px 0;
   transition: color 0.3s;
-=======
-  color: #3b2f2f;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: 0.3s;
->>>>>>> 02b3a8d (Add login functionality)
 }
 nav a:hover {
-<<<<<<< HEAD
   color: #0056b3;
 }
 
@@ -126,7 +95,7 @@ h2 {
 
 /* 6. Button Styling (matching the image) */
 .register-btn {
-  width: 90%;
+  width: 100%;
   padding: 12px 20px;
   background-color: #007bff;
   color: white;
@@ -150,85 +119,4 @@ h2 {
   .events-grid {
       grid-template-columns: 1fr; /* Single column on smaller screens */
   }
-=======
-  background: rgba(90, 60, 40, 0.15);
-  color: #5c3e2b;
-}
-
-/* Headings */
-h1 {
-  text-align: center;
-  margin-top: 50px;
-  color: #3e2f24;
-}
-
-/* Paragraphs */
-p {
-  text-align: center;
-  margin: 20px;
-  font-size: 1.1em;
-  color: #4a4037;
-}
-
-/* Buttons */
-button {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 1em;
-  background: linear-gradient(90deg, #b88b5e, #d1a874);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.03);
-  background: linear-gradient(90deg, #a4784d, #c6985d);
-  box-shadow: 0 0 10px rgba(160, 120, 80, 0.3);
-}
-
-/* Form Styling (transparent box) */
-form {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
-  border-radius: 16px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-form label {
-  display: block;
-  margin-top: 12px;
-  font-weight: 600;
-  color: #4c3b2f;
-}
-
-form input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.5);
-  color: #2f2f2f;
-  font-size: 0.95rem;
-  outline: none;
-  transition: 0.3s;
-}
-
-form input:focus {
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 6px rgba(150, 120, 90, 0.3);
-}
-
-form button {
-  width: 100%;
-  margin-top: 20px;
->>>>>>> 02b3a8d (Add login functionality)
 }
