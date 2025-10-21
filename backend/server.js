@@ -12,28 +12,36 @@ const PORT = 3333;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Setup
+// Connect to DB
 connectDB();
+
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// If your public folder is a sibling of backend folder
-const publicPath = path.join(__dirname, '..', 'public'); 
+// Public folder path
+const publicPath = path.join(__dirname, '..', 'public');
+
+// Serve static files (CSS, JS, images, HTML)
 app.use(express.static(publicPath));
 
+// Optional: explicitly serve CSS folder to ensure no conflicts
+app.use('/css', express.static(path.join(publicPath, 'css')));
 
+// HTML routes (optional if you want explicit routes)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
 app.get("/register", (req, res) => {
   res.sendFile(path.join(publicPath, "register.html"));
 });
-
 app.get("/past-events", (req, res) => {
   res.sendFile(path.join(publicPath, "past-events.html"));
 });
-
 app.get("/schedule", (req, res) => {
   res.sendFile(path.join(publicPath, "schedule.html"));
 });
 
-// Routes
+// Dynamic routes
 app.use("/", mainRoutes);
 
 // Start server
