@@ -3,123 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule</title>
-<<<<<<< HEAD
-  <link rel="stylesheet" href="public/css/test.css">
-=======
-  <link rel="stylesheet" href="css/style.css">
->>>>>>> f43d6edc118354d7aad937e9eeb4be7d71114d21
+  <title>Event Schedule</title>
+  <link rel="stylesheet" href="/css/schedule.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
 </head>
 <body>
   <!-- Navigation -->
   <nav>
-    <a href="/index.html">Home</a>
-    <a href="/register.html">Register</a>
-    <a href="/past-events.html">Past Events</a>
-    <a href="/schedule.html">Schedule</a>
+    <a href="/">Home</a>
+    <a href="/register">Register</a>
+    <a href="/past-events">Past Events</a>
+    <a href="/schedule">Schedule</a>
   </nav>
 
-  <header>
+  <div class="container">
     <h1>Event Schedule</h1>
-    <p>Explore the agenda for our exciting events below</p>
-  </header>
 
-  <section class="event">
-    <h2>🌐 Global Tech Innovation Summit</h2>
-    <p class="event-desc">A full-day event focusing on AI, Cloud, and next-gen technologies driving the world forward.</p>
-    <table class="schedule-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Session</th>
-          <th>Speaker</th>
-          <th>Venue</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>09:00 AM - 09:30 AM</td>
-          <td>Opening Keynote: The Future of AI</td>
-          <td>Dr. Aisha Khan</td>
-          <td>Main Auditorium</td>
-        </tr>
-        <tr>
-          <td>09:45 AM - 11:00 AM</td>
-          <td>Panel Discussion: Cloud Transformation</td>
-          <td>Industry Experts Panel</td>
-          <td>Hall A</td>
-        </tr>
-        <tr>
-          <td>11:15 AM - 12:30 PM</td>
-          <td>Workshop: Building Scalable Systems</td>
-          <td>Michael Chen</td>
-          <td>Lab 1</td>
-        </tr>
-        <tr>
-          <td>01:30 PM - 03:00 PM</td>
-          <td>AI for Sustainable Development</td>
-          <td>Sofia Martinez</td>
-          <td>Conference Room</td>
-        </tr>
-        <tr>
-          <td>03:15 PM - 05:00 PM</td>
-          <td>Networking & Startup Pitches</td>
-          <td>Open Floor</td>
-          <td>Expo Zone</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <!-- Global Tech Innovation Summit -->
+    <section class="event-card gradient-bg">
+      <div class="event-details">
+        <h2>Global Tech Innovation Summit</h2>
+        <div class="metadata">
+          <p><span class="icon"><i class="fa-regular fa-calendar"></i></span> 20th Oct 2025</p>
+          <p><span class="icon"><i class="fa-solid fa-location-dot"></i></span> Convention Center, Hyderabad</p>
+        </div>
+        <p>Top innovators gather for a full day of technology talks, workshops, and networking opportunities.</p>
 
-  <section class="event">
-    <h2>💼 Digital Marketing Workshop</h2>
-    <p class="event-desc">Master the strategies of modern marketing, SEO, content, and social media analytics.</p>
-    <table class="schedule-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Session</th>
-          <th>Instructor</th>
-          <th>Venue</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>09:30 AM - 10:30 AM</td>
-          <td>Intro to Digital Marketing</td>
-          <td>Rahul Sharma</td>
-          <td>Workshop Hall B</td>
-        </tr>
-        <tr>
-          <td>10:45 AM - 12:00 PM</td>
-          <td>Social Media Growth Hacks</td>
-          <td>Emily Johnson</td>
-          <td>Workshop Hall B</td>
-        </tr>
-        <tr>
-          <td>01:00 PM - 02:30 PM</td>
-          <td>SEO Deep Dive</td>
-          <td>James Anderson</td>
-          <td>Hall C</td>
-        </tr>
-        <tr>
-          <td>02:45 PM - 04:00 PM</td>
-          <td>Content Strategy for 2025</td>
-          <td>Priya Mehta</td>
-          <td>Hall C</td>
-        </tr>
-        <tr>
-          <td>04:15 PM - 05:30 PM</td>
-          <td>Analytics & Performance Review</td>
-          <td>Sarah Lee</td>
-          <td>Workshop Hall B</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Session</th>
+              <th>Speaker</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="session-keynote">
+              <td>09:00 - 09:30</td>
+              <td>Registration & Welcome Coffee</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-keynote">
+              <td>09:30 - 10:30</td>
+              <td>Keynote: The Future of AI</td>
+              <td>Dr. A. Sharma</td>
+            </tr>
+            <tr class="session-panel">
+              <td>10:30 - 11:15</td>
+              <td>Panel Discussion: Emerging Tech Trends</td>
+              <td>Various Experts</td>
+            </tr>
+            <tr class="session-break">
+              <td>11:15 - 11:30</td>
+              <td>Coffee Break</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-workshop">
+              <td>11:30 - 12:30</td>
+              <td>Workshop: Blockchain Innovations</td>
+              <td>R. Verma</td>
+            </tr>
+            <tr class="session-lunch">
+              <td>12:30 - 13:30</td>
+              <td>Networking Lunch</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-demo">
+              <td>13:30 - 14:30</td>
+              <td>Tech Demo: IoT in Smart Cities</td>
+              <td>Team XYZ</td>
+            </tr>
+            <tr class="session-workshop">
+              <td>14:30 - 15:15</td>
+              <td>Workshop: Cloud Computing Best Practices</td>
+              <td>S. Reddy</td>
+            </tr>
+            <tr class="session-break">
+              <td>15:15 - 15:30</td>
+              <td>Tea Break</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-keynote">
+              <td>15:30 - 16:30</td>
+              <td>Keynote: Cybersecurity Challenges</td>
+              <td>Dr. M. Kapoor</td>
+            </tr>
+            <tr class="session-closing">
+              <td>16:30 - 17:00</td>
+              <td>Closing Remarks & Networking</td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Event Management Committee | Designed for DevOps Project</p>
-  </footer>
+    <!-- Digital Marketing Workshop -->
+    <section class="event-card gradient-bg-alt">
+      <div class="event-details">
+        <h2>Digital Marketing Workshop</h2>
+        <div class="metadata">
+          <p><span class="icon"><i class="fa-regular fa-calendar"></i></span> 21st Oct 2025</p>
+          <p><span class="icon"><i class="fa-solid fa-location-dot"></i></span> Startup Hub, Hyderabad</p>
+        </div>
+        <p>Learn advanced digital marketing strategies and hands-on techniques to grow your business.</p>
+
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Session</th>
+              <th>Trainer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="session-keynote">
+              <td>10:00 - 10:30</td>
+              <td>Introduction & Overview</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-workshop">
+              <td>10:30 - 11:30</td>
+              <td>SEO Strategies for 2025</td>
+              <td>K. Nair</td>
+            </tr>
+            <tr class="session-workshop">
+              <td>11:30 - 12:15</td>
+              <td>Social Media Marketing Tips</td>
+              <td>A. Gupta</td>
+            </tr>
+            <tr class="session-workshop">
+              <td>12:15 - 13:15</td>
+              <td>Content Marketing Workshop</td>
+              <td>L. Fernandes</td>
+            </tr>
+            <tr class="session-lunch">
+              <td>13:15 - 14:00</td>
+              <td>Lunch Break</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-workshop">
+              <td>14:00 - 15:00</td>
+              <td>Email Marketing Automation</td>
+              <td>S. Iyer</td>
+            </tr>
+            <tr class="session-demo">
+              <td>15:00 - 15:45</td>
+              <td>PPC & Paid Campaigns</td>
+              <td>R. Sharma</td>
+            </tr>
+            <tr class="session-break">
+              <td>15:45 - 16:00</td>
+              <td>Tea Break</td>
+              <td>-</td>
+            </tr>
+            <tr class="session-keynote">
+              <td>16:00 - 17:00</td>
+              <td>Analytics & Reporting</td>
+              <td>M. Joshi</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
