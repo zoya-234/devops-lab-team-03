@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import connectDB from "./config/db.js";
 import mainRoutes from "./routes/mainRoutes.js";
+import Registration from "./models/registration.js";
 
 const app = express();
 const PORT = 3333;
@@ -17,6 +18,7 @@ connectDB();
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Public folder path
 const publicPath = path.join(__dirname, '..', 'public');
@@ -40,6 +42,19 @@ app.get("/past-events", (req, res) => {
 app.get("/schedule", (req, res) => {
   res.sendFile(path.join(publicPath, "schedule.html"));
 });
+
+app.post('/register', async (req, res) => {
+  try {
+    const registration = new Registration(req.body);
+    await registration.save();
+    // redirect to schedule page
+    res.redirect('/schedule');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error registering user');
+  }
+});
+
 
 
 // Dynamic routes

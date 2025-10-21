@@ -24,7 +24,7 @@
       <h1>Register for the Event</h1>
       <p>Fill out the form below to secure your spot.</p>
 
-      <form action="#" method="post">
+      <form action="http://localhost:3333/register" method="post" >
         <label for="name">Full Name</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" required />
 
@@ -33,6 +33,13 @@
 
         <label for="phone">Phone Number</label>
         <input type="tel" id="phone" name="phone" placeholder="Enter your number" required />
+
+        <label for="event">Event</label>
+    <select id="event" name="event" required>
+    <option value="" disabled selected>Select event</option>
+    <option value="Tech Innovation Summit">Tech Innovation Summit</option>
+    <option value="Digital Marketing Workshop">Digital Marketing Workshop</option>
+    </select>
 
         <button type="submit">Register Now</button>
       </form>
