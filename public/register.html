@@ -35,7 +35,7 @@
         <input type="tel" id="phone" name="phone" placeholder="Enter your number" required />
 
         <label for="event">Event</label>
-    <select id="event" name="event" required>
+    <select id="event" name="eventName" required>
     <option value="" disabled selected>Select event</option>
     <option value="Tech Innovation Summit">Tech Innovation Summit</option>
     <option value="Digital Marketing Workshop">Digital Marketing Workshop</option>
@@ -45,5 +45,11 @@
       </form>
     </div>
   </section>
+  <script>
+const params = new URLSearchParams(window.location.search);
+if (params.get('status') === 'success') {
+  alert("✅ Registration successful!");
+}
+</script>
 </body>
 </html>
