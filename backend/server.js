@@ -41,6 +41,7 @@ app.get("/schedule", (req, res) => {
   res.sendFile(path.join(publicPath, "schedule.html"));
 });
 
+
 // Dynamic routes
 app.use("/", mainRoutes);
 
