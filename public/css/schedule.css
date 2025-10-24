@@ -1,0 +1,156 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Updated font */
+}
+
+/* Body */
+body {
+  background-color: #E8F6F3; /* Soft seafoam */
+  color: #2C3E50; /* Calm dark blue for text */
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+nav a {
+  text-decoration: none;
+  color: #1B4F72; /* Deep ocean blue */
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #A3E4D7; /* Aqua/sea green hover */
+  color: #1B4F72;
+}
+
+/* Container */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Page Title */
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #117A65; /* Tropical green */
+}
+
+/* Event Cards */
+.event-card {
+  background-color: #D5F5E3; /* Light leafy green */
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.event-card h2 {
+  color: #138D75; /* Calm island green */
+  margin-bottom: 10px;
+}
+
+/* Metadata */
+.metadata {
+  display: flex;
+  gap: 15px;
+  font-size: 0.95rem;
+  color: #1F618D; /* Relaxing soft blue */
+  margin-bottom: 15px;
+}
+
+
+/* Event Description */
+.event-card p {
+  margin-bottom: 20px;
+}
+
+/* Tables */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 1px solid #A9DFBF; /* Soft greenish divider */
+}
+
+.schedule-table th {
+  background-color: #ABEBC6; /* Subtle header green */
+  color: #145A32;
+  font-weight: 600;
+}
+
+/* Session Types */
+.session-keynote {
+  background-color: #D6EAF8; /* Soft sky blue */
+}
+
+.session-workshop {
+  background-color: #D5F5E3; /* Light leafy green */
+}
+
+.session-panel {
+  background-color: #FCF3CF; /* Warm sand tone */
+}
+
+.session-break {
+  background-color: #FAD7A0; /* Soft sunset peach */
+}
+
+.session-demo {
+  background-color: #F5B7B1; /* Gentle coral/pink */
+}
+
+.session-lunch {
+  background-color: #FDEBD0; /* Light creamy beige */
+}
+
+.session-closing {
+  background-color: #D2B4DE; /* Lavender hint for closing */
+}
+
+/* Table Row Hover */
+.schedule-table tbody tr:hover {
+  background-color: #A3E4D7; /* Soft aqua highlight */
+  transition: background-color 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .metadata {
+    flex-direction: column;
+  }
+
+  .metadata .icon i {
+  margin-right: 6px;
+  color: #117A65; /* tropical green to match theme */
+}
+
+
+}
