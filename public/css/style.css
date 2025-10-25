@@ -2,24 +2,23 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f9fc; /* slightly lighter blue-gray tone */
+  background-color: #f7f9fc; 
   color: #333;
 }
 nav {
-  background: linear-gradient(90deg, #5ba8f5, #74b9ff); /* Soft blue gradient */
+  background: linear-gradient(90deg, #5ba8f5, #74b9ff); 
   padding: 20px 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   display: flex;
-  justify-content: center; /* Centers nav links */
+  justify-content: center;
   align-items: center;
   gap: 40px;
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  position: sticky; /* Optional: keeps header visible when scrolling */
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-/* Navigation Links */
 nav a {
   text-decoration: none;
   color: #007bff; 
@@ -49,10 +48,10 @@ nav a:hover {
   margin-top: 40px;
 }
 
-/* 4. Header Section Styling */
+
 h2 {
   font-size: 2.5em;
-  color: #2d6cdf; /* Blue tone matching the image */
+  color: #2d6cdf; 
   text-shadow: 1px 1px 3px rgba(45, 108, 223, 0.2);
   margin-bottom: 15px;
   border: none;
@@ -64,7 +63,7 @@ p {
   margin-bottom: 30px;
 }
 
-/* 5. Event Card Styling */
+
 .event-card {
   background-color: #ffffff;
   border-radius: 12px;
@@ -94,7 +93,7 @@ p {
   color: #1a1a1a;
 }
 
-/* 6. Icon/Metadata Styling */
+
 .metadata {
   display: flex;
   align-items: center;
@@ -109,10 +108,10 @@ p {
 }
 .icon {
   margin-right: 8px;
-  color: #2d6cdf; /* Accent color for icons */
+  color: #2d6cdf; 
 }
 
-/* 7. Button Styling */
+
 .register-btn {
   width: 100%;
   padding: 12px 20px;
@@ -134,7 +133,7 @@ p {
   transform: translateY(-2px);
 }
 
-/* 8. Responsive Adjustments */
+
 @media (max-width: 800px) {
   .events-grid {
     grid-template-columns: 1fr;
