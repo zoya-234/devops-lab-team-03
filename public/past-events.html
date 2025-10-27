@@ -3,21 +3,784 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Past Events</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Past Events | Event Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    
+    /* Navigation Styles */
+    nav {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 600;
+      padding: 0.5rem 1.5rem;
+      margin: 0 0.5rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(66, 153, 225, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    nav a:hover::before {
+      left: 100%;
+    }
+    
+    nav a:hover {
+      color: #2b6cb0;
+      background: rgba(66, 153, 225, 0.1);
+    }
+    
+    nav a.active {
+      color: #2b6cb0;
+      background: rgba(66, 153, 225, 0.15);
+      box-shadow: 0 2px 8px rgba(66, 153, 225, 0.2);
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    /* Header Section */
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    
+    .page-header h1 {
+      font-size: 2.8rem;
+      color: #2d3748;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #2b6cb0, #4299e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-description {
+      font-size: 1.2rem;
+      color: #4a5568;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    /* Filter Section */
+    .filter-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .filter-btn {
+      padding: 0.8rem 1.5rem;
+      border: 2px solid #4299e1;
+      background: white;
+      color: #4299e1;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #4299e1;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(66, 153, 225, 0.3);
+    }
+    
+    /* Events Grid */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Event Card */
+    .event-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .event-image-container {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    
+    .event-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .event-card:hover .event-image {
+      transform: scale(1.05);
+    }
+    
+    .past-event-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #38a169;
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .event-details {
+      padding: 1.5rem;
+    }
+    
+    .event-details h3 {
+      font-size: 1.4rem;
+      color: #2d3748;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    /* Metadata */
+    .metadata {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .metadata p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #4a5568;
+      font-size: 0.95rem;
+    }
+    
+    .icon {
+      color: #4299e1;
+      width: 16px;
+    }
+    
+    .event-description {
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    /* Event Highlights */
+    .event-highlights {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #f7fafc;
+      border-radius: 10px;
+      border-left: 4px solid #4299e1;
+    }
+    
+    .event-highlights h4 {
+      color: #2d3748;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .event-highlights ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .event-highlights li {
+      padding: 0.3rem 0;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .event-highlights li:before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #38a169;
+      font-weight: bold;
+    }
+    
+    /* Event Stats */
+    .event-stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: linear-gradient(135deg, #4299e1, #2b6cb0);
+      border-radius: 10px;
+      color: white;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    
+    /* Event Media */
+    .event-media {
+      display: flex;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+    
+    .media-btn {
+      flex: 1;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 8px;
+      background: #edf2f7;
+      color: #4a5568;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .media-btn:hover {
+      background: #4299e1;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+    }
+    
+    /* Resources */
+    .resources {
+      margin: 1.5rem 0;
+    }
+    
+    .resources h4 {
+      color: #2d3748;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .resource-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      background: #f7fafc;
+      border-radius: 8px;
+      color: #4299e1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .resource-link:hover {
+      background: #4299e1;
+      color: white;
+      transform: translateX(5px);
+    }
+    
+    /* Testimonial */
+    .testimonial {
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: #fffaf0;
+      border-radius: 10px;
+      border-left: 4px solid #d69e2e;
+      position: relative;
+    }
+    
+    .testimonial:before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 3rem;
+      color: #d69e2e;
+      opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+    
+    .testimonial blockquote {
+      font-style: italic;
+      color: #744210;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    
+    .testimonial cite {
+      font-weight: bold;
+      color: #744210;
+      padding-left: 1.5rem;
+    }
+    
+    /* Newsletter Section */
+    .newsletter-section {
+      margin-top: 4rem;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #2b6cb0, #4299e1);
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(43, 108, 176, 0.3);
+    }
+    
+    .newsletter-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .newsletter-content p {
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+    
+    .newsletter-form button {
+      padding: 1rem 2rem;
+      background: #38a169;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    
+    .newsletter-form button:hover {
+      background: #2f855a;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      color: #4a5568;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    /* Animation for cards */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .event-card {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    
+    .event-card:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+    
+    .event-card:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        padding: 1rem;
+      }
+      
+      nav a {
+        margin: 0.2rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .event-stats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .event-media {
+        flex-direction: column;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        border-radius: 10px;
+      }
+      
+      .newsletter-form input,
+      .newsletter-form button {
+        width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav>
-
     <a href="index.html">Home</a>
     <a href="register.html">Register</a>
     <a href="past-events.html" class="active">Past Events</a>
     <a href="schedule.html">Schedule</a>
-
   </nav>
 
-  <h1>Past Events</h1>
-  <p>Information and photos from past events go here.</p>
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Our Past Events</h1>
+      <p class="page-description">Relive the memorable moments from our previous successful events. Browse through photos, highlights, and key takeaways from each gathering.</p>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <button class="filter-btn active" data-filter="all">
+        <i class="fas fa-th-large"></i> All Events
+      </button>
+      <button class="filter-btn" data-filter="tech">
+        <i class="fas fa-laptop-code"></i> Tech
+      </button>
+      <button class="filter-btn" data-filter="marketing">
+        <i class="fas fa-bullhorn"></i> Marketing
+      </button>
+      <button class="filter-btn" data-filter="workshop">
+        <i class="fas fa-chalkboard-teacher"></i> Workshops
+      </button>
+    </div>
+
+    <!-- Past Events Grid -->
+    <div class="events-grid">
+      
+      <!-- Event 1 -->
+      <div class="event-card past-event" data-category="tech">
+        <div class="event-image-container">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+            <i class="fas fa-laptop-code" style="font-size: 3rem; margin-right: 1rem;"></i>
+            <div>Tech Summit 2024</div>
+          </div>
+          <div class="past-event-badge">Completed</div>
+        </div>
+        <div class="event-details">
+          <h3>Global Tech Summit 2024</h3>
+          <div class="metadata">
+            <p><i class="icon fas fa-calendar-alt"></i> October 15, 2024</p>
+            <p><i class="icon fas fa-map-marker-alt"></i> San Francisco, USA</p>
+            <p><i class="icon fas fa-users"></i> 1,200+ Attendees</p>
+          </div>
+          <p class="event-description">A groundbreaking conference featuring AI innovations, blockchain technologies, and the future of digital transformation.</p>
+          
+          <div class="event-highlights">
+            <h4><i class="fas fa-star"></i> Key Highlights</h4>
+            <ul>
+              <li>50+ Industry Speakers</li>
+              <li>15+ Technical Workshops</li>
+              <li>Startup Pitch Competition</li>
+              <li>Networking Sessions</li>
+            </ul>
+          </div>
+
+          <div class="event-stats">
+            <div class="stat">
+              <span class="stat-number">95%</span>
+              <span class="stat-label">Satisfaction Rate</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">45</span>
+              <span class="stat-label">Sponsors</span>
+            </div>
+          </div>
+
+          <div class="event-media">
+            <button class="media-btn" onclick="openGallery('tech2024')">
+              <i class="fas fa-images"></i> View Photos
+            </button>
+            <button class="media-btn" onclick="openVideo('video1')">
+              <i class="fas fa-play-circle"></i> Watch Recap
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card past-event" data-category="marketing">
+        <div class="event-image-container">
+          <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+            <i class="fas fa-bullhorn" style="font-size: 3rem; margin-right: 1rem;"></i>
+            <div>Marketing Conference</div>
+          </div>
+          <div class="past-event-badge">Completed</div>
+        </div>
+        <div class="event-details">
+          <h3>Digital Marketing Conference 2024</h3>
+          <div class="metadata">
+            <p><i class="icon fas fa-calendar-alt"></i> August 22, 2024</p>
+            <p><i class="icon fas fa-map-marker-alt"></i> New York, USA</p>
+            <p><i class="icon fas fa-users"></i> 800+ Attendees</p>
+          </div>
+          <p class="event-description">Comprehensive insights into the latest digital marketing trends, SEO strategies, and social media innovations.</p>
+          
+          <div class="event-highlights">
+            <h4><i class="fas fa-star"></i> Key Highlights</h4>
+            <ul>
+              <li>Content Marketing Masterclasses</li>
+              <li>SEO & Analytics Deep Dives</li>
+              <li>Social Media Strategy Sessions</li>
+              <li>Case Study Presentations</li>
+            </ul>
+          </div>
+
+          <div class="event-stats">
+            <div class="stat">
+              <span class="stat-number">92%</span>
+              <span class="stat-label">Satisfaction Rate</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">28</span>
+              <span class="stat-label">Expert Speakers</span>
+            </div>
+          </div>
+
+          <div class="resources">
+            <h4><i class="fas fa-download"></i> Event Resources</h4>
+            <div class="resource-links">
+              <a href="#" class="resource-link">
+                <i class="fas fa-file-powerpoint"></i> Download Presentations
+              </a>
+              <a href="#" class="resource-link">
+                <i class="fas fa-file-pdf"></i> Event Whitepaper
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card past-event" data-category="workshop">
+        <div class="event-image-container">
+          <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+            <i class="fas fa-chalkboard-teacher" style="font-size: 3rem; margin-right: 1rem;"></i>
+            <div>Leadership Workshop</div>
+          </div>
+          <div class="past-event-badge">Completed</div>
+        </div>
+        <div class="event-details">
+          <h3>Leadership Development Workshop</h3>
+          <div class="metadata">
+            <p><i class="icon fas fa-calendar-alt"></i> June 10, 2024</p>
+            <p><i class="icon fas fa-map-marker-alt"></i> London, UK</p>
+            <p><i class="icon fas fa-users"></i> 150+ Attendees</p>
+          </div>
+          <p class="event-description">Interactive workshop focused on developing essential leadership skills for modern business environments.</p>
+          
+          <div class="testimonial">
+            <blockquote>
+              "The leadership workshop transformed my approach to team management. The practical exercises were incredibly valuable."
+            </blockquote>
+            <cite>- Sarah Johnson, Tech Lead</cite>
+          </div>
+
+          <div class="event-stats">
+            <div class="stat">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Would Recommend</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">89%</span>
+              <span class="stat-label">Skill Improvement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="newsletter-section">
+      <div class="newsletter-content">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter to get notified about upcoming events and receive insights from past events.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Event Management. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Filter functionality for past events
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const eventCards = document.querySelectorAll('.past-event');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          this.classList.add('active');
+          
+          const filterValue = this.getAttribute('data-filter');
+          
+          // Filter events
+          eventCards.forEach(card => {
+            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+              card.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+      
+      // Newsletter form handling
+      const newsletterForm = document.querySelector('.newsletter-form');
+      
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const email = this.querySelector('input[type="email"]').value;
+          
+          // Here you would typically send this to your backend
+          alert(`Thank you for subscribing with: ${email}`);
+          this.reset();
+        });
+      }
+    });
+
+    // Gallery and video functions
+    function openGallery(eventId) {
+      alert(`Opening gallery for ${eventId}. In a real implementation, this would show a modal with event photos.`);
+    }
+
+    function openVideo(videoId) {
+      alert(`Playing video recap for ${videoId}. In a real implementation, this would show a modal with the event video.`);
+    }
+  </script>
 </body>
 </html>
